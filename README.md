@@ -12,3 +12,9 @@ https://www.filecatalyst.com/blog/how-to-measure-network-and-disk-throughput-wit
 
 https://www.comp.uems.br/~ojacques/NumericPython/BasicoMatPlotLib.pdf
 https://www.dtidigital.com.br/blog/como-gerar-graficos-em-python/
+
+
+
+# Install
+
+wget -qO- https://get.docker.com/ | sh
