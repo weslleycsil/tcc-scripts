@@ -18,3 +18,7 @@ https://www.dtidigital.com.br/blog/como-gerar-graficos-em-python/
 # Install
 
  wget -qO- https://raw.githubusercontent.com/weslleycsil/tcc-scripts/main/install.sh | sh
+ 
+ ou
+ 
+ wget -qO- https://bit.ly/3tTINNF | sh
