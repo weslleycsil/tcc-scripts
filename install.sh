@@ -2,6 +2,10 @@
 
 set -e
 
+command_exists(){
+	command -v "$@" > /dev/null 2>&1
+}
+
 do_install_pre_reqs(){
     #listApps = "python3 python3-pip git"
     
