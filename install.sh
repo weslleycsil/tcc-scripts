@@ -1,19 +1,43 @@
 #!/bin/sh
 
+set -e
+
 do_install_pre_reqs(){
-    listApps = "python3 python3-pip git"
+    #listApps = "python3 python3-pip git"
     
-    apt update
-    apt install -y $listApps
+    $sh_c 'apt update'
+    $sh_c 'apt install -y python3 python3-pip git'
 
 }
 
 do_install(){
-    apt install -y iperf3
-    pip3 install iperf3
+    user="$(id -un 2>/dev/null || true)"
+
+	sh_c='sh -c'
+	if [ "$user" != 'root' ]; then
+		if command_exists sudo; then
+			sh_c='sudo -E sh -c'
+		elif command_exists su; then
+			sh_c='su -c'
+		else
+			cat >&2 <<-'EOF'
+			Error: this installer needs the ability to run commands as root.
+			We are unable to find either "sudo" or "su" available to make this happen.
+			EOF
+			exit 1
+		fi
+	fi
+
+    do_install_pre_reqs
+
+    $sh_c 'apt install -y iperf3'
+    $sh_c 'pip3 install iperf3'
 
     #clonar o repositorio
+    $sh_c 'git clone https://github.com/weslleycsil/tcc-scripts.git'
+    $sh_c 'cd tcc-scripts'
+    $sh_c 'chmod +x start.sh'
 }
 
-do_install_pre_reqs
+
 do_install
