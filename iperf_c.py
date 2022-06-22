@@ -1,9 +1,13 @@
 import iperf3
+import sys
 import json
+
+
+ipServ = str(sys.argv[1])
 
 client = iperf3.Client()
 client.duration = 1
-client.server_hostname = '150.162.9.156'
+client.server_hostname = ipServ
 client.protocol = 'udp'
 result = client.run()
 
