@@ -1,5 +1,9 @@
 #!/bin/sh
 
+BASEDIR=$(dirname "$0")
+set -e
+sh_c='sh -c'
+
 helpFunction(){
     echo ""
     echo "Uso: $0"
@@ -9,7 +13,9 @@ helpFunction(){
 }
 
 initServ(){
-
+    echo "Iniciando o servidor Iperf3"
+    $sh_c "python3 $BASEDIR/iperf_s.py"
+    exit 1
 }
 
 while getopts "sc:h" opt
@@ -23,10 +29,13 @@ do
     esac
 done
 
-if [ -z "$ipserv"]
+if [ -z "$ipserv" ]
 then
     echo "Endereço IP do Servidor não informado";
     helpFunction
 fi
 
+
+echo "Iniciando Cliente Iperf3 no servidor: " $ipserv
+$sh_c "python3 $BASEDIR/iperf_c.py $ipserv"
 exit 1
