@@ -2,7 +2,7 @@
     2 Hosts e 1 Switch
     100mb
 """
-
+import time
 
 from mininet.net import Mininet
 from mininet.cli import CLI
@@ -45,11 +45,12 @@ def runIperf( network ):
                 basePath = str(host.cmd( "pwd" ))
                 basePath = basePath.replace("\r\n","")
                 basePath = basePath + "/tcc-scripts/start.sh -s"
-                host.cmd( basePath )
+                host.cmdPrint( basePath )
                 numAux = 1
+                time.sleep(3)
+                print("executando o iperf nos outros hosts")
                 continue
             "executo o iperf cliente"
-            print("executando o iperf nos outros hosts")
             basePath = str(host.cmd( "pwd" ))
             basePath = basePath.replace("\r\n","")
             basePath = basePath + "/tcc-scripts/start.sh -c " + ipServ
@@ -70,7 +71,6 @@ def runTestPerf():
     info( '***++ Rodando IPERF nos Hosts\n' )
     runIperf( net )
 
-    info( '*** Abrindo CLI\n' )
     CLI( net )
     net.stop()
 
