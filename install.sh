@@ -1,5 +1,7 @@
 #!/bin/sh
 
+BASEDIR=$(dirname "$0")
+
 set -e
 
 command_exists(){
@@ -39,8 +41,8 @@ do_install(){
 
     #clonar o repositorio
     $sh_c 'git clone https://github.com/weslleycsil/tcc-scripts.git'
-    $sh_c 'cd tcc-scripts'
-    $sh_c 'chmod +x start.sh'
+    $sh_c "chmod +x $BASEDIR/tcc-scripts/start.sh"
+	exit 1
 }
 
 

@@ -14,7 +14,7 @@ helpFunction(){
 
 initServ(){
     echo "Iniciando o servidor Iperf3"
-    $sh_c "python3 $BASEDIR/iperf_s.py"
+    $sh_c "python3 $BASEDIR/iperf/iperf_s.py"
     exit 1
 }
 
@@ -37,5 +37,5 @@ fi
 
 
 echo "Iniciando Cliente Iperf3 no servidor: " $ipserv
-$sh_c "python3 $BASEDIR/iperf_c.py $ipserv"
+$sh_c "python3 $BASEDIR/iperf/iperf_c.py $ipserv &"
 exit 1
